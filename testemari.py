@@ -1,3 +1,5 @@
+import speech_recognition as sr
+
 # Inicializa o reconhecedor de fala
 r = sr.Recognizer()
 
