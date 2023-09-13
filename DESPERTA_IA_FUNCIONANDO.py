@@ -12,8 +12,8 @@ get_ipython().system('pip install secure-smtplib')
 # In[4]:
 
 import speech_recognition as sr
-import pyaudio
 import smtplib
+import pyaudio
 import email.message
 
 # Lista de palavras-chave de assédio
@@ -69,8 +69,10 @@ def main():
             texto_falado = abrir_microfone()
             if texto_falado:
                 print("Texto falado: " + texto_falado)
-                if "socorro" in texto_falado.lower():
-                    enviar_email()
+                for palavra in palavras_chave:
+                    if palavra in texto_falado.lower():
+                        enviar_email()
+                        break  # Envie o e-mail uma vez e saia do loop
             else:
                 print("Não foi possível reconhecer a fala.")
         elif opcao == "2":
@@ -81,6 +83,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# In[ ]:
